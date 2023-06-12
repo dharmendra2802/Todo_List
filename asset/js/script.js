@@ -19,36 +19,47 @@ function closeInput()
 }
 
 // working on tickbox to linethrough
-document.getElementById('tick').addEventListener('click',function(){
+const ticks = document.querySelectorAll('.tick');
 
-    const checkbox = document.getElementById('checkbox');
-    const para = document.getElementById('task-para');
+ticks.forEach(tick=>{
+  tick.addEventListener('click',function(){
+    const para = tick.nextElementSibling;
     
-    if(checkbox.checked)
+    if(tick.children[0].checked)
         para.classList.toggle('strike');
     else
         para.classList.add('remove');
-
+  })  
 })
 
 
 // drop button of discription
+// queryselectorall because there can be multiple tasks
 
-const drop = document.getElementById('drop');
-const disBox = document.getElementById('dis-box');
+const drops = document.querySelectorAll('.drop');
 
-drop.addEventListener('click',dropTheBox);
-disBox.addEventListener('click',dropTheBox);
-let rotation = 0;
-function dropTheBox()
-{
-    rotation+=180;
-    drop.style.transform = 'rotate('+rotation+'deg)';
-    if(!disBox.classList.contains('hide'))
+drops.forEach(drop=>{
+    drop.addEventListener('click',function()
     {
-        disBox.classList.add('hide');        
+        const disBox = drop.nextElementSibling;
+        dropTheBox(drop,disBox);
+        disBox.addEventListener('click',function()
+        {
+            dropTheBox(drop,disBox);
+        })
+        // disBox.removeEventListener('click',function(){})
+    })
+})
+
+function dropTheBox(a,d,rotation)
+{
+    // rotation+=180;
+    // a.style.transform = 'rotate('+rotation+'deg)';
+    if(!d.classList.contains('hide'))
+    {
+        d.classList.add('hide');        
     }else
     {
-        disBox.classList.remove('hide');        
+        d.classList.remove('hide');        
     }
 }

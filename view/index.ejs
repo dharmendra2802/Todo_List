@@ -11,7 +11,7 @@
     <!-- section to 'add the details' of the task  -->
     
     <div id="adding-task-cont" >
-        <form id="form-cont" action="" method="get" class="hide">
+        <form id="form-cont" action="/add-task" method="post" class="hide">
             <h1>Add task!</h1><span><i id="close" class="fa-sharp fa-solid fa-xmark fa-2xl"></i></span>
             <input type="text" id="id-input-task" class="deco" name="task" placeholder="Add task" required>
             <textarea name="discription" id="id-input-discript" class="deco" placeholder="Add discription" cols="30" rows="10"></textarea>
@@ -38,25 +38,27 @@
         <div id="heading">TODO List</div>
         <div id="content-div">
 
+            <% for(let i of taskList) { %>
             <div class="task-cont">
                 <div id="sec-1">
-                    <label id="tick" class="checkbox-container">
-                        <input type="checkbox" id="checkbox">
+                    <label class="tick checkbox-container">
+                        <input type="checkbox" class="checkbox">
                         <span class="checkmark" ></span>
                     </label>
-                    <p id="task-para" >Complete project</p>
-                    <i class="fa-solid fa-caret-down fa-sm" style="color: #32253f;" id="drop">
+                    <p class="task-para" ><%= i.taskname %></p>
+                    <img src="/img/arrow.png" alt="" class="drop">
                     </i>
-                    <div id="dis-box" class="hide">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, dolor!
+                    <div class="dis-box hide" >
+                        <%= i.discription %>
                     </div>
                 </div>
                 <div id="sec-2">
-                    <i id="delete" class="fa-solid fa-trash" style="color: #32353f;"></i>
-                    <div id="task-tag">tag name</div>
-                    <p id="task-due">12-02-2023</p>
+                    <a href="/delete-task?id:<%=i.__id%>"><i  class="fa-solid fa-trash delete" style="color: #32353f;"></i></a>
+                    <div class="task-tag"><%= i.category %></div>
+                    <p class="task-due"><%= i.duedate %></p>
                 </div>
             </div>
+            <% } %>
         </div>
         
     </div>
