@@ -3,9 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Todo List</title>
 </head>
 <body>
-    <h1>Todo List</h1>
+    
+    <!-- section to 'add the details' of the task  -->
+    
+    <div id="adding-task-cont" >
+        <form id="form-cont" action="" method="get" class="hide">
+            <h1>Add task!</h1><span><i id="close" class="fa-sharp fa-solid fa-xmark fa-2xl"></i></span>
+            <input type="text" id="id-input-task" class="deco" name="task" placeholder="Add task" required>
+            <textarea name="discription" id="id-input-discript" class="deco" placeholder="Add discription" cols="30" rows="10"></textarea>
+            <select name="category" id="id-input-category" class="deco">
+                <option value="work">work</option>
+                <option value="errand">errands</option>
+                <option value="important">important</option>
+                <option value="travel">travel</option>
+                <option value="social">social</option>
+                <option value="finance">finance</option>
+                <option value="health">health</option>
+                
+            </select>
+            <input class="deco" type="date" id="id-input-duedate" name="duedate">
+
+            <button class="deco" id="id-input-button" type="submit">Add Task</button>
+        </form>
+    </div>
+    <!-- done -->
+
+    <!-- working on main part -->
+
+    <div id="main-cont">
+        <div id="heading">TODO List</div>
+        <div id="content-div">
+
+            <div class="task-cont">
+                <div id="sec-1">
+                    <label id="tick" class="checkbox-container">
+                        <input type="checkbox" id="checkbox">
+                        <span class="checkmark" ></span>
+                    </label>
+                    <p id="task-para" >Complete project</p>
+                    <i class="fa-solid fa-caret-down fa-sm" style="color: #32253f;" id="drop">
+                    </i>
+                    <div id="dis-box" class="hide">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, dolor!
+                    </div>
+                </div>
+                <div id="sec-2">
+                    <i id="delete" class="fa-solid fa-trash" style="color: #32353f;"></i>
+                    <div id="task-tag">tag name</div>
+                    <p id="task-due">12-02-2023</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+<!-- end -->
+<img src="/img/plus.png" alt="add" id="add-button">
+<!-- add button -->
+
 </body>
+<script src="/js/script.js"></script>
+<script src="https://kit.fontawesome.com/e4606a84eb.js" crossorigin="anonymous"></script>
+
 </html>

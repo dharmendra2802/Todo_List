@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@500&family=Josefin+Sans&display=swap');
+
+/* 
+font-family: 'Edu NSW ACT Foundation', cursive;
+font-family: 'Josefin Sans', sans-serif; */
+
+/* css variables */
+
+:root{
+    --color1 : black;
+    --bg-color: #FDFDFD;
+    --paper: #F0E5CF;
+    --bg2-color: #A2D9CD;
+    --in-bg: #F5FBFA;
+    --in-color:#444444;
+    --button-bg:#FFA500;
+    --button-text:#FFFFFF;
+    --placeholder:#a69d97;
+    --pencil: #32353f;
+}
+
+body{
+    background-color: var(--paper);
+    /* background-image: url('/img/bg.jpg'); */
+    /* background-size: cover; */
+    /* filter: blur(3px); */
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+/* clearing default */
+
+*,*::after,*::before
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* working on the add the details block of the list */
+
+#adding-task-cont
+{
+    z-index: 4;
+    height: 100vh;
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#adding-task-cont form
+{
+    background-color: var(--bg2-color);
+    width: 62vw;
+    max-width: 610px;
+    display: grid;
+    padding: 20px 1.5%;
+    grid-template-columns:  repeat(5,18.5%);
+    grid-template-rows: 50px repeat(4,auto);
+    grid-row-gap: 10px;
+    grid-column-gap: 2%;
+    box-shadow: 1px 0px 4px 5px rgba(0, 0, 0, 0.2);
+
+}
+#adding-task-cont form h1
+{
+    grid-area: 1/1/2/6;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #444444;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    font-size: 2.5rem !important;
+    text-shadow: 2px 5px 5px rgba(222, 149, 31, 0.2);
+
+}
+
+#adding-task-cont form span
+{
+    grid-area: 1/1/2/6;
+    cursor: pointer;
+    justify-self: end;
+}
+/* input add task */
+#id-input-task
+{    
+    font-size: 1.6rem;
+    outline: none;
+    border: none;
+    padding: 10px 6px;
+    letter-spacing: 2px;
+    grid-column: 1 / 6;
+}
+/* input discription */
+#id-input-discript
+{
+    resize: none;
+    padding: 10px;
+    grid-area: 3/1/5/4;
+    letter-spacing: 1.5px;
+    height: 150px;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+
+/* input category */
+#id-input-category
+{
+    grid-area: 3/4/4/6;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#id-input-due
+{
+}
+/* chnging default style of date */
+input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    grid-area: 4/4/5/6;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    /* Custom icon or background image */
+    background-image: url('../../img/schedule.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    padding: 4px;
+  }
+  input[type="date"] {
+    color: var(--in-color);
+    background-color: var(--in-bg);
+    padding: 0px 5px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.strike
+{
+    text-decoration: line-through;
+}
+
+/* button */
+
+#id-input-button
+{
+    grid-area: 5/2/6/5;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+}
+
+#id-input-button:active {
+    background-color: #FF5F5F; /* Adjusted click background color */
+}
+
+#id-input-button:hover
+{
+    background-color: #388E3C; 
+}
+/* a class to style the font */
+.deco
+{
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: var(--in-bg);
+    color: var(--in-color);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1.4px;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* hiding class */
+.hide
+{
+    display: none !important;
+}
+
+
+
+
+
+
+
+/* working on main section */
+#main-cont
+{
+    z-index: 3;
+    width: 40%;
+    min-width: 320px;
+    height: 95vh;
+    background-image: url('../../img/bg.jpg');
+    /* background-color: var(--paper); */
+    background-size: cover;
+    padding: 10px 5px;
+    box-shadow: 1px 1px 10px 4px rgba(0, 0, 0, 0.2);
+}
+
+#heading
+{
+    font-size: 2.7rem;
+    font-family: 'Edu NSW ACT Foundation', cursive;
+    font-weight: bolder;
+    letter-spacing: 2.5px;
+    color: var(--pencil);
+    text-align: center;
+}
+
+#content-div
+{
+    height: 90%;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+/* task container */
+.task-cont
+{
+    border-bottom :1px solid var(--in-color);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    font-family: 'Edu NSW ACT Foundation', cursive;
+    position: relative;
+
+}
+#sec-1 , #sec-2
+{
+    display:inherit;
+}
+
+#sect1
+{
+    width: 60%;
+}
+/* creating custum checkbox */
+.checkbox-container {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+  
+  .checkbox-container input[type="checkbox"] {
+    display: none; /* Hide the default checkbox */
+  }
+  
+  .checkbox-container .checkmark {
+    width: 18px;
+    height: 18px;
+    border: 1.2px solid var(--pencil);
+    border-radius: 3px;
+    background-color: transparent;
+  }
+  
+  .checkbox-container input[type="checkbox"]:checked + .checkmark {
+    border: none; /* Change background color when checked */
+  }
+  
+  .checkbox-container .checkmark:after {
+    content: "";
+    display: none;
+  }
+  
+  .checkbox-container input[type="checkbox"]:checked + .checkmark:after {
+    content: "\2713"; /* Add a checkmark when checked */
+    display: block;
+    color: var(--pencil);
+    font-size: 20px;
+    text-align: center;
+    line-height: 16px;
+  }
+  
+
+/* end */
+
+#task-para
+{
+    font-size: 1.2rem;
+    letter-spacing: 1.2px;
+    margin:0px 8px
+}
+
+#task-tag
+{
+    margin: 0px 8px;
+    background-color: var(--in-color);
+    color: var(--paper);
+    padding: 1px 2px;
+    border-radius: 2px;
+    margin-top: -3px;
+}
+
+#task-due
+{
+    font-size: .8rem;
+    
+}
+#drop
+{
+    margin-top: 12px;
+    cursor: pointer;
+    height: 8px;
+}
+/* discription block */
+#dis-box
+{
+    position: absolute;
+    width: auto;
+    max-width: 200px;
+    min-width: 50px;
+    font-size: 1rem;
+    height: auto;
+    min-height: 50px;
+    top: 6vh;
+    left: 12vw;
+    background-color: var(--in-color);
+    color: white;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+
+
+#delete
+{
+    cursor: pointer;
+}
+
+/* add button */
+#add-button
+{
+    width: 5%;
+    height: auto;
+    position: absolute;
+    bottom: 5vh;
+    right: 5vw;
+    cursor: pointer;
+}
