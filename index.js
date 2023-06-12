@@ -32,7 +32,7 @@ app.post('/add-task',async function(req,res){
         taskname:req.body.task,
         discription:req.body.discription,
         category:req.body.category,
-        duedate:req.body.duedate
+        duedate:req.body.duedate,
     });
     return res.redirect('/');
 
@@ -44,9 +44,8 @@ app.get('/' ,async function(req,res)
     const find = appModel.find({});
     find.select();
     const data = await find.exec();
-    // console.log(data);
     return res.render('index',{    
-        taskList:data   
+        taskList:data   ,
     });
 })
 

@@ -9,8 +9,14 @@ add_bttn.addEventListener('click',closeInput);
 closeButton.addEventListener('click',closeInput);
 addButton.addEventListener('click',function()
 {
-
+    const d = document.getElementById('id-input-task').value;
+    if(d!='')
+    {
+        funboxCheck();
+        closeInput();
+    }
 })
+
 // functon to close input box
 function closeInput()
 {
@@ -63,3 +69,22 @@ function dropTheBox(a,d,rotation)
         d.classList.remove('hide');        
     }
 }
+
+// leisure box/msg
+const del = document.querySelectorAll('.delete');
+del.forEach(d=>{
+    d.addEventListener('click',funboxCheck);
+})
+
+function funboxCheck(){
+    const taskCount = document.getElementById('content-div').childElementCount;
+    const funbox = document.getElementById('leisure');
+    if(taskCount<2)
+    {
+        funbox.classList.remove('hide');
+    }else
+    {
+        funbox.classList.add('hide');
+    }
+}
+funboxCheck();
