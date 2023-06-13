@@ -43,11 +43,21 @@ ticks.forEach(tick=>{
 // queryselectorall because there can be multiple tasks
 
 const drops = document.querySelectorAll('.drop');
+function containsOnlySpaces(str) {
+    // Remove all whitespace characters from the string
+    var stringWithoutSpaces = str.replace(/\s/g, '');
+    
+    // Check if the resulting string is empty or consists only of spaces
+    return stringWithoutSpaces.length === 0 || stringWithoutSpaces === '';
+  }
 
 drops.forEach(drop=>{
     drop.addEventListener('click',function()
     {
         const disBox = drop.nextElementSibling;
+        if(containsOnlySpaces(disBox.innerHTML))
+            disBox.innerHTML = "No discription given";
+        
         dropTheBox(drop,disBox);
         disBox.addEventListener('click',function()
         {
@@ -59,8 +69,6 @@ drops.forEach(drop=>{
 
 function dropTheBox(a,d,rotation)
 {
-    // rotation+=180;
-    // a.style.transform = 'rotate('+rotation+'deg)';
     if(!d.classList.contains('hide'))
     {
         d.classList.add('hide');        
@@ -70,6 +78,62 @@ function dropTheBox(a,d,rotation)
     }
 }
 
+
+// working on edit box
+// first we are listening to the one that is being clicked
+// then we are passing the current value of the para and taskid
+
+const edits = document.querySelectorAll('.edit');
+edits.forEach(edit=>{
+    edit.addEventListener('click',function(){
+    const para = edit.previousElementSibling;
+    editTask(para.innerHTML,edit.dataset.taskid);
+    })
+})
+
+// we are using that current value to show in the edit input and 
+// then sending request to update the db and returning the updating value
+
+function editTask(str,id)
+{
+    console.log(str+id)
+    const cont = document.getElementById('edit-box');
+    const box = document.getElementById('edit-input');
+    cont.classList.toggle('hide');
+    box.value=str;
+    
+    document.getElementById('edit-bttn').addEventListener('click',function()
+    {
+        const update = box.value;
+
+        fetch(`/update-task/${id}`,{
+            method:'POST',
+            headers:{     
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({__id:id, data:update}),
+        })
+        
+        .then((response)=>{
+            // console.log(response); // Check the response
+            if(!response.ok){
+                throw new Error('Failed to update task');
+            }
+            return response.json()})
+            
+            .then((data)=>{
+                // console.log(data)
+        })
+        
+        .catch((error)=>{console.log(error)})
+        
+        cont.classList.toggle('hide');
+        location.reload();
+    }
+)}
+    
+    
+    
 // leisure box/msg
 const del = document.querySelectorAll('.delete');
 del.forEach(d=>{
@@ -79,12 +143,17 @@ del.forEach(d=>{
 function funboxCheck(){
     const taskCount = document.getElementById('content-div').childElementCount;
     const funbox = document.getElementById('leisure');
-    if(taskCount<2)
-    {
+   
+    if(taskCount<3)
+    {   
         funbox.classList.remove('hide');
     }else
     {
         funbox.classList.add('hide');
     }
 }
+
+
+
+
 funboxCheck();

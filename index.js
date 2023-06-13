@@ -9,6 +9,15 @@ const appModel = require('./model/todo-model');
 
 const app = express();
 
+// using body-parser to handle json req as well
+var bodyParser = require('body-parser');
+
+// setting middleware
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
 // middleware
 app.use(express.urlencoded());
 app.use(express.static('asset'));
@@ -18,6 +27,21 @@ app.set('views',path.join(__dirname,'view'));
 app.set('view engine','ejs');
 
 
+
+
+// updating the db
+app.post('/update-task/:taskid', async (req,res)=>{
+    const id = req.params.taskid;
+    const dataUpdated = req.body.data;
+    // console.log(req.body);
+    await appModel.findOneAndUpdate(
+        {_id:id},
+        {
+            taskname:dataUpdated
+        })
+    res.status(200).json({ message: 'Task updated successfully' });
+    
+})
 
 // deleting
 app.get('/delete-task/',async function(req,res){
@@ -44,6 +68,7 @@ app.get('/' ,async function(req,res)
     const find = appModel.find({});
     find.select();
     const data = await find.exec();
+    console.log(data);
     return res.render('index',{    
         taskList:data   ,
     });
@@ -56,3 +81,5 @@ app.listen(port,function(err){
     
     console.log("Server Started successfully");
 })
+
+

@@ -37,6 +37,13 @@
     <div id="main-cont">
         <div id="heading">TODO List</div>
         <div id="content-div">            
+
+            <!-- edit box -->
+            <div id="edit-box" class="hide">
+                <input type="text" id="edit-input">
+                <p id="edit-bttn">Done</p>
+            </div>
+
             <!-- leisure msg -->
 
             <div id="leisure" class="hide">
@@ -53,6 +60,7 @@
                         <span class="checkmark" ></span>
                     </label>
                     <p class="task-para" ><%= i.taskname %></p>
+                    <img src="/img/pencil.png" alt="" class="edit" data-taskid=<%= i._id%>>
                     <img src="/img/arrow.png" alt="" class="drop">
                     </i>
                     <div class="dis-box hide" >
@@ -60,7 +68,7 @@
                     </div>
                 </div>
                 <div id="sec-2">
-                    <a href="/delete-task?id:<%=i.__id%>"><div class="delete"></div></a>
+                    <a href="/delete-task?id:<%=i._id%>"><div class="delete"></div></a>
                     <div class="task-tag">
                         <%= i.category %>
                     </div>
